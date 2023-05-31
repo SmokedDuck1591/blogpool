@@ -1,26 +1,17 @@
 package com.jeon.blogpool.blog.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 
-@Entity
-@Getter
-public class Comment {
+public class Comment extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @Column(name = "comment_text", columnDefinition = "TEXT", nullable = false)
-    private String mainText;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String context;
 
-    @Column(name = "create_date")
-    private String createDate;
-
-    @Column(name = "modified", columnDefinition = "boolean default false")
-    private boolean isModified;
-
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
 
